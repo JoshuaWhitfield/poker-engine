@@ -9,14 +9,6 @@ class Card {
         };
     };
 
-    wipeLoc() {
-        this.meta.location = 0;
-    };
-
-    setLoc(location) {
-        this.meta.location = location;
-    };
-
     getName = () => this.meta.card_name;
     getLoc = () => this.meta.location;
     getSuit = () => this.meta.suit;
