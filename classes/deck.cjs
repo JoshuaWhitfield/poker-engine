@@ -25,7 +25,6 @@ class DeckUtil {
                 let name = `${value_idx}`;
                 if ( value_idx >= 11 || value_idx === 1 ) name = royals[value_idx];
                 arr.push( createCard(`${name}_${suit}`, suit, value_idx ) )
-                //console.log(`${name}_${suit}`, value_idx)
             }
         }
         return arr;
@@ -76,7 +75,7 @@ class Deck {
 };
 
 const createDeck = () => {
-    const deck = new Deck(); //console.log(deck.deck)
+    const deck = new Deck();
     return deck;
 };
 

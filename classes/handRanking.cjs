@@ -98,7 +98,6 @@ class HandRanking {
             if (valueArr[idx+1] === undefined) break;
             if ((value + 1) === valueArr[idx+1]) {
                 count += 1;
-                console.log(`${value}: ${valueArr[idx+1]}: ${count}`)
                 continue;
             };
             if (count === 4) break;
