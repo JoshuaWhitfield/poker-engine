@@ -5,24 +5,25 @@ class PokerEngine {
     constructor() {
         this.controller = controller;
         this.deck = this.controller.deck;
+        this.holeCardCount = 2;
     }
 
     showDeck = () => this.deck;
     showController = () => this.controller;
     getWinningHand = () => this.controller.getWinningHand();
+    setHoleCardCount = (value) => this.holeCardCount = value;
 
     generateRiver() {
         this.deck.generateRiver(this.controller.generateRiverTarget());
         return this.deck.getRiver();
     };
 
-    generateHoleCards(amount = 1) {
-        const holeCardsArr = [];
-        for (let count = 0; count <= amount; count++) {
-            this.deck.generateHoleCards(this.controller.generateHoleTarget());
-            holeCardsArr.push(this.deck.getHoleCards());
-        };
-        return holeCardsArr;
+    generateHoleCards(amount = this.holeCardCount, holeCardsArr = []) {
+        if (amount <= 0) return holeCardsArr;
+        this.deck.generateHoleCards(this.controller.generateHoleTarget());
+        holeCardsArr.push(this.deck.getHoleCards());
+        amount -= 1;
+        return this.generateHoleCards(amount, holeCardsArr);
     };
     
     getWinner(holeCardsArr, river) {

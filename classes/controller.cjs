@@ -1,4 +1,5 @@
 const createDeck =  require("./deck.cjs");
+const cache = require('./cache.cjs');
 const handRanking = require("./handRanking.cjs");
 const oper = require('./operations.cjs');
 
@@ -70,6 +71,7 @@ class Controller {
         this.cardNamesArr = this.deck.getCardNames();
         this.util = new ControllerUtil();
         this.winningHand = '';
+        this.cache = cache;
     };
 
     getWinningHand = () => this.winningHand;
@@ -91,11 +93,11 @@ class Controller {
         const indexes = []; const targets = [];
         for (let idx = 0; idx < 5; idx++) {
             const rndIdx = oper.randomIdx();
-            if (indexes.indexOf(rndIdx) > -1) {
+            if (this.cache.get().indexOf(rndIdx) > -1) {
                 idx -= 1;
                 continue;
             };
-            indexes.push(rndIdx);
+            this.cache.add(rndIdx);
             targets.push(this.cardNamesArr[rndIdx]);
         };
         return targets;
@@ -105,11 +107,11 @@ class Controller {
         const indexes = []; const targets = [];
         for (let idx = 0; idx < 2; idx++) {
             const rndIdx = oper.randomIdx();
-            if (indexes.indexOf(rndIdx) > -1) {
+            if (this.cache.get().indexOf(rndIdx) > -1) {
                 idx -= 1;
                 continue;
             };
-            indexes.push(rndIdx);
+            this.cache.add(rndIdx);
             targets.push(this.cardNamesArr[rndIdx]);
         };
         return targets;

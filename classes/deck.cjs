@@ -5,13 +5,6 @@ const createHole = require('./hole.cjs')
 class DeckUtil {
     constructor() {
         this.meta = {
-            numbers: {
-                max: 52,
-                min: 1,
-                maxarr: 51,
-                minarr: 0,
-            },
-    
             suits: [
                 'clubs',
                 'spades',
@@ -22,7 +15,6 @@ class DeckUtil {
             suits_abbr: [ 'c', 's', 'd', 'h' ]
         };
 
-        this.tools = {};
     }
 
     init() {
@@ -56,6 +48,7 @@ class Deck {
         this.card_names = this.utils.generateCardNames(this.deck);
         this.hole_cards = [];
         this.river = [];
+        this.cache = [];
     }
 
     getDeck = () => this.deck;
@@ -63,11 +56,13 @@ class Deck {
     getRiver = () => this.river;
     getUtil = () => this.utils;
     getCardNames = () => this.card_names;
+
     generateRiver = (targets) => {
         const river = createRiver();
         river.deal(this.deck, targets);
         this.river = river.getRiver();
     }
+
     generateHoleCards = (targets) => {
         const arr = [];
         for (let target of targets) {

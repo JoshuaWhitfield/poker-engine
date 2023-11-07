@@ -73,7 +73,9 @@ class HandRanking {
         if (!this.ThreeOfAKind(valueArr)) return false;
         
         const valueInstances = Object.values(getInstances(valueArr));
-        if (oper.findSubArray(valueInstances, [ 3, 3 ])) return true;
+        let count = 0;
+        if (getInstances(valueInstances)['3'] === 2) return true;
+        //if (oper.findSubArray(valueInstances, [ 3, 3 ])) return true;
 
         if (!this.TwoPair(valueArr)) {
             if (!this.Pair(valueArr)) return false; 
@@ -96,21 +98,25 @@ class HandRanking {
             if (valueArr[idx+1] === undefined) break;
             if ((value + 1) === valueArr[idx+1]) {
                 count += 1;
+                console.log(`${value}: ${valueArr[idx+1]}: ${count}`)
                 continue;
             };
-            
+            if (count === 4) break;
             if (value === valueArr[idx+1]) continue;
             count = 0;
         };
 
-        if (count < 5) {
-            let countRoyals = 0;
+        if (count < 4) {
+            let found = true;
             const royals = [ 1, 10, 11, 12, 13 ];
-            for (let value of valueArr) {
-                if (royals.indexOf(value) === -1) continue;
-                countRoyals += 1;
+            for (let idx = 0; royals.length > 0; idx++) {
+                let value = royals[idx];
+                if (royals.indexOf(value) === -1) {
+                    found = false;
+                    break;
+                };
             };
-            if (countRoyals < 5) return false;
+            return found;
         };
         return true;
     };
