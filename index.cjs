@@ -1,3 +1,10 @@
+/* run this file in the command line to see output demonstration:
+    $ cd src/
+    $ node index.cjs
+
+    the code below shows proper usage:
+*/
+
 const pokerEngine = require('./classes/engine.cjs');
 
 const river = pokerEngine.generateRiver();
