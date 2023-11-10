@@ -17,21 +17,19 @@ Components and Structure:
   The engine class represents the root node and is the main class. Everything that the engine class uses is a child class.
   The controller class compiles all of the child classes that it can access and uses them in functions that the engine class can access.
   The deeper into the tree you traverse, the functions of the child classes get more specific. 
-  -- diagram: 
-                                          engine
-                                            ||
-                                        controller
-                                         (+ util)
-                                            ||
-                            ----------------------------------
-                            ||              ||              ||
-                          cache            deck         hand-ranking
-                                         (+ util)
-                                            ||
-                                --------------------------
-                                ||          ||          ||
-                               river       card        hole
-
-              
-                                    
-  
+  <br>-- diagram: <br>
+  <pre>
+                                                         engine
+                                                           ||
+                                                       controller
+                                                        (+ util)
+                                                           ||
+                                           ----------------------------------
+                                           ||              ||              ||
+                                         cache            deck         hand-ranking
+                                                        (+ util)
+                                                           ||
+                                               --------------------------
+                                               ||          ||          ||
+                                              river       card        hole
+</pre>
