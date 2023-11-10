@@ -15,7 +15,7 @@ Components and Structure:
   The structure and direction of the engine's classes resemble a tree structure. 
   Higher-level or more abstracted classes are the parent of the least abstracted classes. 
   The engine class represents the root node and is the main class. Everything that the engine class uses is a child class.
-  The controller class compiles all of the child classes that it can access and uses them in functions that the engine class can access.
+  The controller class initializes all of the child classes that it can access and uses them in functions that the engine class can access.
   The deeper into the tree you traverse, the functions of the child classes get more specific. 
   <br>-- diagram: <br>
   <pre>
